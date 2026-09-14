@@ -5,7 +5,7 @@ const { Sider } = Layout
 function RightSideBar() {
     return (
         <Sider 
-            width={240}
+            width={360}
             style={{ marginTop: 16 }}
         >
             here is a sider
