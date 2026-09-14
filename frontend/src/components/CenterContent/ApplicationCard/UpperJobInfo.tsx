@@ -22,7 +22,7 @@ function UpperJobInfo({percentMatch,
                     companyAvatarPath,
                     companyName} : UpperJobInfoProp) {
     return (
-        <Flex gap={20}>
+        <Flex gap={40}>
             <Progress
                 type="circle"
                 percent={percentMatch}
@@ -40,12 +40,12 @@ function UpperJobInfo({percentMatch,
                     "--percent-match": percentMatch,
                 } as React.CSSProperties}
             />
-            <Flex vertical gap={4}>
+            <Flex vertical gap={10} align="flex-start" justify="space-between">
                 <Title level={5} style={{ margin: 0 }}>
                     {jobTitle}
                 </Title>
 
-                <Flex align="center" gap={8}>
+                <Flex align="center" gap={8}  justify="flex-start">
                     <Avatar src={companyAvatarPath} size={24} />
                     <Text>{companyName}</Text>
                 </Flex>
