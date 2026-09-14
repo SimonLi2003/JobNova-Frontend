@@ -96,6 +96,5 @@ p {
 
 .ant-progress-circle svg {
   transform:
-    rotate(calc((100 - var(--percent-match)) / 2  * 0.01 * 360deg))
-    scaleX(-1);
+    rotate(calc((100 - var(--percent-match)) * 3.6deg / 2 + 70deg));
 }
