@@ -21,9 +21,9 @@ function App() {
       <Layout>
         <TopBar />
         <Layout hasSider={true} style={{ gap: 16 }}>
-          <LeftSideBar />
-          <CenterContent />
-          <RightSideBar />
+              <LeftSideBar />
+              <CenterContent />
+              <RightSideBar />
         </Layout>
       </Layout>
     </ConfigProvider>
