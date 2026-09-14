@@ -40,53 +40,50 @@ function BottomApplyInfo({hoursAfterJobPosted, numofApplicants} : BottomApplyInf
                 }
             }}
         >
-            <Row justify="space-between" align="middle" gutter={[0, 8]}>
-                <Col>
-                    <Flex gap={8}>
-                        <Button
-                            type="default"
-                            shape="round"
-                            size="small"
-                            style={{
-                                cursor: 'default'
-                            }}
-                        >
-                            {hoursAfterJobPosted} hours ago
-                        </Button>
-                        <Button
-                            shape="round"
-                            variant="text"
-                            color="default"
-                            size="small"
-                            style={{
-                                cursor: 'default'
-                            }}
-                        >
-                            {numofApplicants} applicants
-                        </Button>
-                    </Flex>
-                </Col>
 
-                <Col>
-                    <Flex gap={8}>
-                        <Button                           
-                            shape="round"
-                            size="large"
-                        >        
-                            Apply
-                        </Button>
-                        <Button                           
-                            shape="round"
-                            size="large"
-                            style={{
-                                background: '#a3f321'
-                            }}
-                        >
-                            Mock Interview
-                        </Button>
-                    </Flex>
-                </Col>
-            </Row>
+            <Flex justify="space-between" align="center">
+                <Flex gap={8}>
+                    <Button
+                        type="default"
+                        shape="round"
+                        size="small"
+                        style={{
+                            cursor: 'default'
+                        }}
+                    >
+                        {hoursAfterJobPosted} hours ago
+                    </Button>
+                    <Button
+                        shape="round"
+                        variant="text"
+                        color="default"
+                        size="small"
+                        style={{
+                            cursor: 'default'
+                        }}
+                    >
+                        {numofApplicants} applicants
+                    </Button>
+                </Flex>
+
+                <Flex gap={8}>
+                    <Button                           
+                        shape="round"
+                        size="large"
+                    >        
+                        Apply
+                    </Button>
+                    <Button                           
+                        shape="round"
+                        size="large"
+                        style={{
+                            background: '#a3f321'
+                        }}
+                    >
+                        Mock Interview
+                    </Button>
+                </Flex>
+            </Flex>
         </ConfigProvider>
 
     )
