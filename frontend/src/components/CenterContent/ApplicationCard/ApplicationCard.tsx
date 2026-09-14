@@ -1,4 +1,4 @@
-import { Row, Col, Card, Divider, Progress, Button, ConfigProvider, Avatar} from 'antd'
+import { Row, Col, Card, Divider, Progress, Button, ConfigProvider, Avatar, Flex} from 'antd'
 
 const { Meta } = Card
 
@@ -28,16 +28,42 @@ function ApplicationCard() {
     useEffect(() => {
         setApplicationsInfo([
             {
-                percentMatch : 85, 
+                percentMatch : 64, 
                 jobTitle: "Web Application Developer", 
                 companyAvatarPath: "www.abcde.xyz", 
-                companyName: "backd business funding", 
+                companyName: "Backd Business Funding", 
                 jobLocation: "Austin, Texas Matropolitan Area", 
                 workingMode: "On-site", 
                 jobTags: ["Full Time", "0 of 3 skills matched", "Mid-Level", "$65/yr-$70/yr"], 
                 timePosted: 1789325624000,
                 numOfApplicants: 25, 
-                jobLink: "www.jobnova.com", 
+                jobLink: "www.bbf.com", 
+                isHearted: false
+            }, 
+            {
+                percentMatch : 93, 
+                jobTitle: "Software Engineering, Network Infrastructure", 
+                companyAvatarPath: "www.abcde.xyz", 
+                companyName: "Cursor AI", 
+                jobLocation: "Sunnyvale, CA", 
+                workingMode: "On-site", 
+                jobTags: ["Full Time", "5+ years exp", "Mid-Level", "$161k/yr-$239k/yr"], 
+                timePosted: 1789318624000,
+                numOfApplicants: 25, 
+                jobLink: "www.cursorai.com", 
+                isHearted: true
+            }, 
+            {
+                percentMatch : 82, 
+                jobTitle: "Full-Stack Software Engineer (Web Developer)", 
+                companyAvatarPath: "www.abcde.xyz", 
+                companyName: "Simons Foundation", 
+                jobLocation: "New York, NY", 
+                workingMode: "On-site", 
+                jobTags: ["Full Time", "5+ years exp", "Mid-Level", "$125k/yr-$140k/yr"], 
+                timePosted: 1789318624000,
+                numOfApplicants: 25, 
+                jobLink: "www.cursorai.com", 
                 isHearted: false
             }
         ])
@@ -47,20 +73,19 @@ function ApplicationCard() {
         <ConfigProvider
             theme={{
                 components:{
-                    Progress:{
-
-                    },
+                    Divider: {
+                        lineWidth: 1,
+                    }
                 }
             }}
         >
-        <>
-            {applicationsInfo.map((applicationInfo) => (
-                <Card 
-                    key={applicationInfo.jobLink}
-                    style={{ marginBottom: 16 }}
-                >
-                    <Row align="middle" gutter={16}>
-                        <Col flex="none">
+            <>
+                {applicationsInfo.map((applicationInfo) => (
+                    <Card 
+                        key={applicationInfo.jobLink}
+                        style={{ marginBottom: 16 }}
+                    >
+                        <Flex vertical gap={20}>
                             <UpperJobInfo 
                                 percentMatch={applicationInfo.percentMatch}
                                 jobTitle={applicationInfo.jobTitle}
@@ -68,35 +93,21 @@ function ApplicationCard() {
                                 companyAvatarPath={applicationInfo.companyAvatarPath}
                                 companyName={applicationInfo.companyName}
                             />
-                        {/* <Meta
-                            title={applicationInfo.jobTitle}
-                            // avatar={companyAvatarPath}
-                            avatar={<Avatar src = {applicationInfo.companyAvatarPath} />}
-                            description={`${applicationInfo.companyName} - ${applicationInfo.jobLocation}`}
-                        /> */}
-                        </Col>
-                    </Row>
-                    
-                    <Row>
-                        <Col>
                             <MiddleTags jobTags = {applicationInfo.jobTags} />
-                        </Col>
-                    </Row>
-
-                    <Divider/>
-
-                    <Row>
-                        <Col span={24}>
+                            {/* The parent Flex applies gap={20} between every
+                                child. A negative margin here claws some of it
+                                back so only the divider sits tighter. The
+                                effective space is gap + this margin. */}
+                            <Divider style={{ margin: '-8px 0' }} />
                             <ButtomApplyInfo 
                                 hoursAfterJobPosted={Math.floor((Date.now() - applicationInfo.timePosted) / (1000 * 60 * 60))}
                                 numofApplicants={applicationInfo.numOfApplicants}
                             />
-                        </Col>
-                    </Row>
-                </Card>
-            ))}
-        </>
-        </ConfigProvider>
+                        </Flex>
+                    </Card>
+                ))}
+            </>
+        </ ConfigProvider>
     )
 }
 
