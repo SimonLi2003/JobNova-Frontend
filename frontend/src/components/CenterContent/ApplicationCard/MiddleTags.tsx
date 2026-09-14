@@ -15,7 +15,7 @@ function MiddleTags({jobTags} : MiddleTagsProps) {
                             <Button 
                                 variant="outlined"
                                 shape="round"
-                                size="small"
+                                size="medium"
                             >
                                 {jobTag}
                             </Button>
