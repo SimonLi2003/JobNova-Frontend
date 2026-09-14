@@ -24,47 +24,49 @@ interface BottomApplyInfoProps {
 
 function BottomApplyInfo({hoursAfterJobPosted, numofApplicants} : BottomApplyInfoProps) {
     return (
-        <ConfigProvider
-            theme={{
-                components:{
-                    Button: {
-                        defaultBg: '#eaddf0', 
-                        defaultHoverBorderColor: '#e1acff',
-                        defaultHoverBg: '#e1acff',
-                        defaultHoverColor: '#000000', 
-                        defaultColor: '#000000', 
-                        textTextColor: '#000000', 
-                        textHoverBg: '',
-                        textTextActiveColor: '',
-                    }
-                }
-            }}
-        >
+
 
             <Flex justify="space-between" align="center">
-                <Flex gap={8}>
-                    <Button
-                        type="default"
-                        shape="round"
-                        size="small"
-                        style={{
-                            cursor: 'default'
-                        }}
-                    >
-                        {hoursAfterJobPosted} hours ago
-                    </Button>
-                    <Button
-                        shape="round"
-                        variant="text"
-                        color="default"
-                        size="small"
-                        style={{
-                            cursor: 'default'
-                        }}
-                    >
-                        {numofApplicants} applicants
-                    </Button>
-                </Flex>
+                <ConfigProvider
+                    theme={{
+                        components:{
+                            Button: {
+                                defaultBg: '#eaddf0', 
+                                defaultHoverBorderColor: '#e1acff',
+                                defaultHoverBg: '#e1acff',
+                                defaultHoverColor: '#000000', 
+                                defaultColor: '#000000', 
+                                textTextColor: '#000000', 
+                                textHoverBg: '',
+                                textTextActiveColor: '',
+                            }
+                        }
+                    }}
+                >
+                    <Flex gap={8}>
+                        <Button
+                            type="default"
+                            shape="round"
+                            size="small"
+                            style={{
+                                cursor: 'default'
+                            }}
+                        >
+                            {hoursAfterJobPosted} hours ago
+                        </Button>
+                        <Button
+                            shape="round"
+                            variant="text"
+                            color="default"
+                            size="small"
+                            style={{
+                                cursor: 'default'
+                            }}
+                        >
+                            {numofApplicants} applicants
+                        </Button>
+                    </Flex>
+                </ConfigProvider>
 
                 <Flex gap={8}>
                     <Button                           
@@ -84,7 +86,6 @@ function BottomApplyInfo({hoursAfterJobPosted, numofApplicants} : BottomApplyInf
                     </Button>
                 </Flex>
             </Flex>
-        </ConfigProvider>
 
     )
 }
