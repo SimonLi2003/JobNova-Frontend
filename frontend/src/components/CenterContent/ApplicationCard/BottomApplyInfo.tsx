@@ -1,4 +1,4 @@
-import { Button, Col, ConfigProvider, Flex, Row } from 'antd'
+import { Button, ConfigProvider, Flex } from 'antd'
 import type { CSSProperties } from 'react'
 
 interface BottomApplyInfoProps {
@@ -6,21 +6,6 @@ interface BottomApplyInfoProps {
     numofApplicants: number;
 }
 
-// antd v6 buttons resolve their colors through CSS variables, and the
-// :hover / :active rules read a separate -hover / -active set. Pointing
-// those back at the base values freezes the button visually. This works
-// for any color/variant combination, unlike the default* theme tokens
-// which only apply to the default (outlined) variant.
-// const infoChipStyle: CSSProperties = {
-//     '--ant-btn-text-color': '#000000',
-//     '--ant-btn-text-color-hover': '#000000',
-//     '--ant-btn-text-color-active': '#000000',
-//     '--ant-btn-bg-color-hover': 'var(--ant-btn-bg-color)',
-//     '--ant-btn-bg-color-active': 'var(--ant-btn-bg-color)',
-//     '--ant-btn-border-color-hover': 'var(--ant-btn-border-color)',
-//     '--ant-btn-border-color-active': 'var(--ant-btn-border-color)',
-//     cursor: 'default',
-// } as CSSProperties;
 
 function BottomApplyInfo({hoursAfterJobPosted, numofApplicants} : BottomApplyInfoProps) {
     return (
@@ -32,18 +17,20 @@ function BottomApplyInfo({hoursAfterJobPosted, numofApplicants} : BottomApplyInf
                         components:{
                             Button: {
                                 defaultBg: '#eaddf0', 
-                                defaultHoverBorderColor: '#e1acff',
-                                defaultHoverBg: '#e1acff',
+                                defaultHoverBorderColor: '#d9d9d9',
+                                defaultHoverBg: '#eaddf0',
                                 defaultHoverColor: '#000000', 
+                                defaultActiveBg: '#e1acff',
+                                defaultActiveBorderColor: '#e1acff',
+                                defaultActiveColor: '#000000',
                                 defaultColor: '#000000', 
                                 textTextColor: '#000000', 
                                 textHoverBg: '',
-                                textTextActiveColor: '',
                             }
                         }
                     }}
                 >
-                    <Flex gap={8}>
+                    <Flex wrap>
                         <Button
                             type="default"
                             shape="round"
@@ -68,23 +55,41 @@ function BottomApplyInfo({hoursAfterJobPosted, numofApplicants} : BottomApplyInf
                     </Flex>
                 </ConfigProvider>
 
-                <Flex gap={8}>
-                    <Button                           
-                        shape="round"
-                        size="large"
-                    >        
-                        Apply
-                    </Button>
-                    <Button                           
-                        shape="round"
-                        size="large"
-                        style={{
-                            background: '#a3f321'
-                        }}
-                    >
-                        Mock Interview
-                    </Button>
-                </Flex>
+                <ConfigProvider
+                    theme={{
+                        components: {
+                            Button:{
+                                defaultHoverColor: '#000000',
+                                defaultHoverBorderColor: '#d9d9d9',
+                                defaultActiveColor: '#000000', 
+                                defaultActiveBorderColor: '#d9d9d9',
+                            }
+                        }
+                    }}
+                >
+                    {/* The whole card is clickable, and React's synthetic events
+                        bubble, so a click on Apply would also open the job link.
+                        Stopping propagation here scopes every control in this row
+                        out of the card's handler, instead of repeating it on each
+                        button. */}
+                    <Flex gap={8} onClick={(e) => e.stopPropagation()}>
+                        <Button                           
+                            shape="round"
+                            size="large"
+                        >        
+                            Apply
+                        </Button>
+                        <Button                           
+                            shape="round"
+                            size="large"
+                            style={{
+                                background: '#a3f321'
+                            }}
+                        >
+                            Mock Interview
+                        </Button>
+                    </Flex>
+                </ConfigProvider>
             </Flex>
 
     )
