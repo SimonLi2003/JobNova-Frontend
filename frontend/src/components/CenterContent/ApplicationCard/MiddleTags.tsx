@@ -1,5 +1,4 @@
-import { Button, Col, Flex, Row } from 'antd'
-import CenterContext from '../CenterContent';
+import { Button, Flex } from 'antd'
 
 interface MiddleTagsProps {
     jobTags: string[];
@@ -7,23 +6,19 @@ interface MiddleTagsProps {
 
 function MiddleTags({jobTags} : MiddleTagsProps) {
     return (
-        <Row justify="start" align="middle">
-            <Flex gap={8}>
-            {
-                jobTags.map((jobTag) => (
-                    <Col key={jobTag}>
-                            <Button 
-                                variant="outlined"
-                                shape="round"
-                                size="medium"
-                            >
-                                {jobTag}
-                            </Button>
-                    </Col>
-                ))
-            }
-            </Flex>
-        </Row>
+        <Flex gap={8} wrap align="center">
+        {
+            jobTags.map((jobTag) => (
+                <Button
+                    key={jobTag}
+                    variant="outlined"
+                    shape="round"
+                >
+                    {jobTag}
+                </Button>
+            ))
+        }
+        </Flex>
     )
 }
 
