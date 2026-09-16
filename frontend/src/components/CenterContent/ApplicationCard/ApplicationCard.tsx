@@ -5,8 +5,10 @@ const { Meta } = Card
 
 import UpperJobInfo from './UpperJobInfo'
 import MiddleTags from './MiddleTags'
-import ButtomApplyInfo from './BottomApplyInfo'
+import BottomApplyInfo from './BottomApplyInfo'
 import { useEffect, useState } from 'react';
+import UpperJobInfoPhone from './Phone/UpperJobInfoPhone';
+import BottomApplyInfoPhone from './Phone/BottomApplyInfoPhone';
 
 type ApplicationInfo = {
     percentMatch: number,
@@ -22,7 +24,11 @@ type ApplicationInfo = {
     isHearted: boolean
 };
 
-function ApplicationCard() {
+interface ApplcicationCardProps {
+    isPhone: boolean;
+}
+
+function ApplicationCard({ isPhone } : ApplcicationCardProps) {
     const [applicationsInfo, setApplicationsInfo] = useState<ApplicationInfo[]>([])
 
     useEffect(() => {
@@ -65,6 +71,32 @@ function ApplicationCard() {
                 numOfApplicants: 25, 
                 jobLink: "www.cursorai.com", 
                 isHearted: false
+            }, 
+            {
+                percentMatch : 82, 
+                jobTitle: "Full-Stack Software Engineer (Web Developer)", 
+                companyAvatarPath: "www.abcde.xyz", 
+                companyName: "Simons Foundation", 
+                jobLocation: "New York, NY", 
+                workingMode: "On-site", 
+                jobTags: ["Full Time", "5+ years exp", "Mid-Level", "$125k/yr-$140k/yr"], 
+                timePosted: 1789318624000,
+                numOfApplicants: 25, 
+                jobLink: "www.cursorai.com", 
+                isHearted: false
+            }, 
+            {
+                percentMatch : 82, 
+                jobTitle: "Full-Stack Software Engineer (Web Developer)", 
+                companyAvatarPath: "www.abcde.xyz", 
+                companyName: "Simons Foundation", 
+                jobLocation: "New York, NY", 
+                workingMode: "On-site", 
+                jobTags: ["Full Time", "5+ years exp", "Mid-Level", "$125k/yr-$140k/yr"], 
+                timePosted: 1789318624000,
+                numOfApplicants: 25, 
+                jobLink: "www.cursorai.com", 
+                isHearted: false
             }
         ])
     }, [])
@@ -81,29 +113,48 @@ function ApplicationCard() {
         >
             <>
                 {applicationsInfo.map((applicationInfo) => (
+
                     <Card 
                         key={applicationInfo.jobLink}
-                        style={{ marginBottom: 16 }}
+                        hoverable
+                        onClick={() => window.open(applicationInfo.jobLink, "_blank")}
                     >
-                        <Flex vertical gap={20}>
-                            <UpperJobInfo 
-                                percentMatch={applicationInfo.percentMatch}
-                                jobTitle={applicationInfo.jobTitle}
-                                jobLocation={applicationInfo.jobLocation}
-                                companyAvatarPath={applicationInfo.companyAvatarPath}
-                                companyName={applicationInfo.companyName}
-                            />
-                            <MiddleTags jobTags = {applicationInfo.jobTags} />
-                            {/* The parent Flex applies gap={20} between every
-                                child. A negative margin here claws some of it
-                                back so only the divider sits tighter. The
-                                effective space is gap + this margin. */}
-                            <Divider style={{ margin: '-8px 0' }} />
-                            <ButtomApplyInfo 
-                                hoursAfterJobPosted={Math.floor((Date.now() - applicationInfo.timePosted) / (1000 * 60 * 60))}
-                                numofApplicants={applicationInfo.numOfApplicants}
-                            />
+                        {isPhone && (
+                            <Flex vertical gap={20}>
+                                <UpperJobInfoPhone 
+                                    percentMatch={applicationInfo.percentMatch}
+                                    jobTitle={applicationInfo.jobTitle}
+                                    jobLocation={applicationInfo.jobLocation}
+                                    workingMode={applicationInfo.workingMode}
+                                    companyAvatarPath={applicationInfo.companyAvatarPath}
+                                    companyName={applicationInfo.companyName}
+                                />
+                                <Divider style={{ margin: '-8px 0' }} />
+                                <BottomApplyInfoPhone 
+                                    hoursAfterJobPosted={Math.floor((Date.now() - applicationInfo.timePosted) / (1000 * 60 * 60))}
+                                    numofApplicants={applicationInfo.numOfApplicants}
+                                />
                         </Flex>
+                        )}                    
+
+                        {!isPhone && (
+                            <Flex vertical gap={20}>
+                                <UpperJobInfo 
+                                    percentMatch={applicationInfo.percentMatch}
+                                    jobTitle={applicationInfo.jobTitle}
+                                    jobLocation={applicationInfo.jobLocation}
+                                    workingMode={applicationInfo.workingMode}
+                                    companyAvatarPath={applicationInfo.companyAvatarPath}
+                                    companyName={applicationInfo.companyName}
+                                />
+                                <MiddleTags jobTags = {applicationInfo.jobTags} />
+                                <Divider style={{ margin: '-8px 0' }} />
+                                <BottomApplyInfo 
+                                    hoursAfterJobPosted={Math.floor((Date.now() - applicationInfo.timePosted) / (1000 * 60 * 60))}
+                                    numofApplicants={applicationInfo.numOfApplicants}
+                                />
+                        </Flex>
+                        )}
                     </Card>
                 ))}
             </>

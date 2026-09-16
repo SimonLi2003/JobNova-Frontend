@@ -1,9 +1,13 @@
 import { ConfigProvider, Layout, Menu } from "antd";
+import type { LeftSiderMode } from "../../hooks/useResponsiveLayout";
 import type { MenuProps } from "antd";
 import {
   UserOutlined,
 } from '@ant-design/icons';
-const Sider = Layout.Sider
+import { PURPLE } from "../../theme/colors";
+import { HEADER_HEIGHT } from "../../theme/layout";
+const { Sider } = Layout
+
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -19,13 +23,23 @@ const menuItems: MenuItem[] = [
     {key: 6, label: 'Extra Credits' , icon: <UserOutlined />},
 ]
 
-function LeftSideBar() {
+interface LeftSideBarProps {
+    mode: LeftSiderMode;
+    /** Height of the fixed footer, so the menu never ends up beneath it. */
+    bottomOffset: number;
+}
+
+function LeftSideBar({ mode, bottomOffset }: LeftSideBarProps) {
+    if (mode === 'hidden') {
+        return null
+    }
+
     return (
         <ConfigProvider
             theme={{
                 components: {
                     Menu: {
-                        itemSelectedBg: '#a355d4',
+                        itemSelectedBg: PURPLE,
                         itemSelectedColor: '#ffffff',
                         itemBorderRadius: 25,
                         itemHeight:50,
@@ -34,7 +48,18 @@ function LeftSideBar() {
                 },
             }}
         >
-        <Sider width={240}>
+        <Sider 
+            width={240}
+            collapsedWidth={80}
+            collapsed={mode === 'rail'}
+            trigger={null}
+            style={{
+                position: "sticky",
+                top: HEADER_HEIGHT,
+                height: `calc(100vh - ${HEADER_HEIGHT + bottomOffset}px)`,
+                overflow: 'auto',
+            }}
+        >
             <Menu 
                 items={menuItems} 
                 mode="inline" 
