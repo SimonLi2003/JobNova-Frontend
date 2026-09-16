@@ -1,4 +1,4 @@
-import { Avatar, Col, Flex, Progress, Row, Typography } from 'antd'
+import { Avatar, Flex, Progress, Typography } from 'antd'
 
 const { Title, Text } = Typography
 
@@ -6,6 +6,7 @@ interface UpperJobInfoProp {
     percentMatch: number;
     jobTitle: string, 
     jobLocation: string;
+    workingMode: string;
     companyAvatarPath: string
     companyName: string;
 }
@@ -19,6 +20,7 @@ function getMatchColor(percentMatch: number): string {
 function UpperJobInfo({percentMatch, 
                     jobTitle, 
                     jobLocation,
+                    workingMode,
                     companyAvatarPath,
                     companyName} : UpperJobInfoProp) {
     return (
@@ -41,7 +43,7 @@ function UpperJobInfo({percentMatch,
                 } as React.CSSProperties}
             />
             <Flex vertical gap={10} align="flex-start" justify="space-between">
-                <Title level={5} style={{ margin: 0 }}>
+                <Title level={2} style={{ margin: 0 }}>
                     {jobTitle}
                 </Title>
 
@@ -50,7 +52,10 @@ function UpperJobInfo({percentMatch,
                     <Text>{companyName}</Text>
                 </Flex>
 
-                <Text type="secondary">{jobLocation}</Text>
+                <Flex gap={20}>
+                    <Text type="secondary">{jobLocation}</Text>
+                    <Text>{workingMode}</Text>
+                </Flex>
             </Flex>
         </Flex>
 
