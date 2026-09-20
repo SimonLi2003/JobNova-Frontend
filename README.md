@@ -1,75 +1,70 @@
-# React + TypeScript + Vite
+## Intro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repo is an attempt to rebuild similiar frontend design from JobNova.com. The repo contains the basic looking of the job recommendation page.
 
-Currently, two official plugins are available:
+## Project Structure
+```text
+.
+├── README.md
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.svg
+│   └── icons.svg
+├── src
+│   ├── App.css
+│   ├── App.tsx
+│   ├── Utils
+│   │   └── mockingData.tsx
+│   ├── assets
+│   ├── components
+│   │   ├── BottomFooter
+│   │   │   └── BottomFooter.tsx
+│   │   ├── CenterContent
+│   │   │   ├── CenterContent.tsx
+│   │   │   ├── JobCard
+│   │   │   │   ├── BottomApplyInfo.tsx
+│   │   │   │   ├── JobCard.tsx
+│   │   │   │   ├── MiddleTags.tsx
+│   │   │   │   ├── Phone
+│   │   │   │   │   ├── BottomApplyInfoPhone.tsx
+│   │   │   │   │   └── UpperJobInfoPhone.tsx
+│   │   │   │   └── UpperJobCard.tsx
+│   │   │   └── JobInfo
+│   │   │       ├── JobInfo.tsx
+│   │   │       └── JobInfoHead.tsx
+│   │   ├── LeftSideBar
+│   │   │   └── LeftSideBar.tsx
+│   │   ├── RightSideBar
+│   │   │   └── RightSideBar.tsx
+│   │   ├── TopBar
+│   │   │   └── TopBar.tsx
+│   │   └── TopCenterMiscBar
+│   │       └── TopCenterMiscBar.tsx
+│   ├── hooks
+│   │   └── useResponsiveLayout.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── theme
+│       ├── colors.tsx
+│       └── layout.tsx
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+16 directories, 33 files
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Use npm install to install dependencies from package-lock json
+```
+npm install
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Use npm run dev to run locally
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```
+npm run dev
 ```
