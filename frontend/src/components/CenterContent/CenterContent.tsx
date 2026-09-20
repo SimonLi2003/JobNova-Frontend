@@ -1,6 +1,8 @@
 import { Flex, Layout } from 'antd';
-import ApplicationCard from './ApplicationCard/ApplicationCard'
+import JobCard from './JobCard/JobCard'
 import TopCenterMisBar from '../TopCenterMiscBar/TopCenterMiscBar';
+import JobInfo from './JobInfo/JobInfo';
+import { useState } from 'react';
 const { Content } = Layout
 
 interface CenterContentProp {
@@ -8,21 +10,36 @@ interface CenterContentProp {
 }
 
 function CenterContext({ isPhone } : CenterContentProp) {
+
+    const [cardSelected, setCardSelected] = useState<string | null>(null);
+
     return (
-        // minWidth: 0 lets the content actually shrink. Without it the flex
-        // item floors at its min-content width and pushes the shell wider
-        // than the viewport instead of reflowing.
         <Content 
-            style={{ marginTop: 16, minWidth: 0 }}
+            style={{ marginTop: 16 }}
         >
-            <Flex vertical gap={16}>
-                <Flex>
-                    <TopCenterMisBar isPhone={isPhone} />
+            {cardSelected === null &&
+                <Flex vertical gap={16}>
+                    <Flex>
+                        <TopCenterMisBar 
+                            isPhone={isPhone} 
+                            cardSelected={cardSelected} 
+                            setCardSelected={setCardSelected} />
+                    </Flex>
+                    <Flex vertical gap={10}>
+                        <JobCard isPhone={isPhone} setCardSelected={setCardSelected} />
+                    </Flex>
                 </Flex>
-                <Flex vertical gap={10}>
-                    <ApplicationCard isPhone={isPhone}/>
+            }
+
+            {cardSelected !== null &&
+                <Flex vertical gap={16}>
+                    <TopCenterMisBar 
+                        isPhone={isPhone} 
+                        cardSelected={cardSelected} 
+                        setCardSelected={setCardSelected} />
+                    <JobInfo />
                 </Flex>
-            </Flex>
+            }
         </Content>
     )
 }
