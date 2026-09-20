@@ -2,10 +2,9 @@ import { Button, ConfigProvider, Flex } from 'antd'
 
 interface BottomApplyInfoPhoneProps {
     hoursAfterJobPosted: number;
-    numofApplicants: number;
 }
 
-function BottomApplyInfoPhone({hoursAfterJobPosted, numofApplicants} : BottomApplyInfoPhoneProps) {
+function BottomApplyInfoPhone({hoursAfterJobPosted} : BottomApplyInfoPhoneProps) {
     return (
 
 
@@ -54,7 +53,7 @@ function BottomApplyInfoPhone({hoursAfterJobPosted, numofApplicants} : BottomApp
                         }
                     }}
                 >
-                    <Flex gap={4}>
+                    <Flex gap={4} onClick={(e) => e.stopPropagation()}>
                         <Button                           
                             shape="round"
                             size="medium"
