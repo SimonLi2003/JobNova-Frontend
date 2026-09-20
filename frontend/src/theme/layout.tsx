@@ -10,4 +10,4 @@ export const HEADER_HEIGHT_COMPACT = 56
 // The fixed bottom bar only exists on phones, but its height is what the
 // siders subtract from their own and what the shell reserves below the
 // content, so it lives beside the header heights rather than in the footer.
-export const FOOTER_HEIGHT = 56
+export const FOOTER_HEIGHT = 50
