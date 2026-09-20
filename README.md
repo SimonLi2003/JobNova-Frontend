@@ -2,6 +2,8 @@
 
 This repo is an attempt to rebuild similiar frontend design from JobNova.com. The repo contains the basic looking of the job recommendation page.
 
+![alt text](README_ScreenShot.png)
+
 ## Project Structure
 ```text
 .
