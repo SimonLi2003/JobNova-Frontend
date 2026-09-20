@@ -2,7 +2,7 @@ import { Avatar, Flex, Progress, Typography } from 'antd'
 
 const { Title, Text } = Typography
 
-interface UpperJobInfoProp {
+interface UpperJobCardProp {
     percentMatch: number;
     jobTitle: string, 
     jobLocation: string;
@@ -17,12 +17,12 @@ function getMatchColor(percentMatch: number): string {
     return '#ff4d4f';
 }
 
-function UpperJobInfo({percentMatch, 
+function UpperJobCard({percentMatch, 
                     jobTitle, 
                     jobLocation,
                     workingMode,
                     companyAvatarPath,
-                    companyName} : UpperJobInfoProp) {
+                    companyName} : UpperJobCardProp) {
     return (
         <Flex gap={40}>
             <Progress
@@ -62,4 +62,4 @@ function UpperJobInfo({percentMatch,
     )
 }
 
-export default UpperJobInfo
+export default UpperJobCard
