@@ -1,14 +1,12 @@
-import { Row, Col, Card, Divider, Progress, Button, ConfigProvider, Avatar, Flex} from 'antd'
+import { Card, Divider, Progress, Button, ConfigProvider, Avatar, Flex} from 'antd'
 
-const { Meta } = Card
-
-
-import UpperJobInfo from './UpperJobInfo'
+import UpperJobInfo from './UpperJobCard'
 import MiddleTags from './MiddleTags'
 import BottomApplyInfo from './BottomApplyInfo'
 import { useEffect, useState } from 'react';
 import UpperJobInfoPhone from './Phone/UpperJobInfoPhone';
 import BottomApplyInfoPhone from './Phone/BottomApplyInfoPhone';
+import { MOCK_JOB_CARD_DATA } from '../../../Utils/mockingData';
 
 type ApplicationInfo = {
     percentMatch: number,
@@ -24,81 +22,16 @@ type ApplicationInfo = {
     isHearted: boolean
 };
 
-interface ApplcicationCardProps {
+interface JobCardProps {
     isPhone: boolean;
+    setCardSelected: (jobLink: string | null) => void;
 }
 
-function ApplicationCard({ isPhone } : ApplcicationCardProps) {
+function JobCard({ isPhone, setCardSelected } : JobCardProps) {
     const [applicationsInfo, setApplicationsInfo] = useState<ApplicationInfo[]>([])
 
     useEffect(() => {
-        setApplicationsInfo([
-            {
-                percentMatch : 64, 
-                jobTitle: "Web Application Developer", 
-                companyAvatarPath: "www.abcde.xyz", 
-                companyName: "Backd Business Funding", 
-                jobLocation: "Austin, Texas Matropolitan Area", 
-                workingMode: "On-site", 
-                jobTags: ["Full Time", "0 of 3 skills matched", "Mid-Level", "$65/yr-$70/yr"], 
-                timePosted: 1789325624000,
-                numOfApplicants: 25, 
-                jobLink: "www.bbf.com", 
-                isHearted: false
-            }, 
-            {
-                percentMatch : 93, 
-                jobTitle: "Software Engineering, Network Infrastructure", 
-                companyAvatarPath: "www.abcde.xyz", 
-                companyName: "Cursor AI", 
-                jobLocation: "Sunnyvale, CA", 
-                workingMode: "On-site", 
-                jobTags: ["Full Time", "5+ years exp", "Mid-Level", "$161k/yr-$239k/yr"], 
-                timePosted: 1789318624000,
-                numOfApplicants: 25, 
-                jobLink: "www.cursorai.com", 
-                isHearted: true
-            }, 
-            {
-                percentMatch : 82, 
-                jobTitle: "Full-Stack Software Engineer (Web Developer)", 
-                companyAvatarPath: "www.abcde.xyz", 
-                companyName: "Simons Foundation", 
-                jobLocation: "New York, NY", 
-                workingMode: "On-site", 
-                jobTags: ["Full Time", "5+ years exp", "Mid-Level", "$125k/yr-$140k/yr"], 
-                timePosted: 1789318624000,
-                numOfApplicants: 25, 
-                jobLink: "www.cursorai.com", 
-                isHearted: false
-            }, 
-            {
-                percentMatch : 82, 
-                jobTitle: "Full-Stack Software Engineer (Web Developer)", 
-                companyAvatarPath: "www.abcde.xyz", 
-                companyName: "Simons Foundation", 
-                jobLocation: "New York, NY", 
-                workingMode: "On-site", 
-                jobTags: ["Full Time", "5+ years exp", "Mid-Level", "$125k/yr-$140k/yr"], 
-                timePosted: 1789318624000,
-                numOfApplicants: 25, 
-                jobLink: "www.cursorai.com", 
-                isHearted: false
-            }, 
-            {
-                percentMatch : 82, 
-                jobTitle: "Full-Stack Software Engineer (Web Developer)", 
-                companyAvatarPath: "www.abcde.xyz", 
-                companyName: "Simons Foundation", 
-                jobLocation: "New York, NY", 
-                workingMode: "On-site", 
-                jobTags: ["Full Time", "5+ years exp", "Mid-Level", "$125k/yr-$140k/yr"], 
-                timePosted: 1789318624000,
-                numOfApplicants: 25, 
-                jobLink: "www.cursorai.com", 
-                isHearted: false
-            }
-        ])
+        setApplicationsInfo(MOCK_JOB_CARD_DATA)
     }, [])
 
     return (
@@ -117,7 +50,8 @@ function ApplicationCard({ isPhone } : ApplcicationCardProps) {
                     <Card 
                         key={applicationInfo.jobLink}
                         hoverable
-                        onClick={() => window.open(applicationInfo.jobLink, "_blank")}
+                        size={isPhone ? "small" : "default"}
+                        onClick={() => setCardSelected(applicationInfo.jobLink)}
                     >
                         {isPhone && (
                             <Flex vertical gap={20}>
@@ -132,7 +66,6 @@ function ApplicationCard({ isPhone } : ApplcicationCardProps) {
                                 <Divider style={{ margin: '-8px 0' }} />
                                 <BottomApplyInfoPhone 
                                     hoursAfterJobPosted={Math.floor((Date.now() - applicationInfo.timePosted) / (1000 * 60 * 60))}
-                                    numofApplicants={applicationInfo.numOfApplicants}
                                 />
                         </Flex>
                         )}                    
@@ -162,4 +95,4 @@ function ApplicationCard({ isPhone } : ApplcicationCardProps) {
     )
 }
 
-export default ApplicationCard
+export default JobCard
