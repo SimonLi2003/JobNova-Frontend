@@ -1,4 +1,4 @@
-import { Card, Divider, Progress, Button, ConfigProvider, Avatar, Flex} from 'antd'
+import { Card, Divider, ConfigProvider, Flex} from 'antd'
 
 import UpperJobInfo from './UpperJobCard'
 import MiddleTags from './MiddleTags'
@@ -28,7 +28,7 @@ interface JobCardProps {
 }
 
 function JobCard({ isPhone, setCardSelected } : JobCardProps) {
-    const [applicationsInfo, setApplicationsInfo] = useState<ApplicationInfo[]>([])
+    const [applicationsInfo, setApplicationsInfo] = useState<ApplicationInfo[]>(MOCK_JOB_CARD_DATA)
 
     useEffect(() => {
         setApplicationsInfo(MOCK_JOB_CARD_DATA)

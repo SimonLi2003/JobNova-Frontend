@@ -1,5 +1,4 @@
 import { Button, ConfigProvider, Flex } from 'antd'
-import type { CSSProperties } from 'react'
 
 interface BottomApplyInfoProps {
     hoursAfterJobPosted: number;

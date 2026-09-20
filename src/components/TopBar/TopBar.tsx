@@ -2,7 +2,7 @@ import { Button, ConfigProvider, Divider, Flex, Layout, Typography } from "antd"
 import { useState } from "react";
 import { PURPLE } from "../../theme/colors";
 const { Header } = Layout;
-const { Title, Text } = Typography
+const { Title } = Typography
 
 
 interface TopBarProps {
